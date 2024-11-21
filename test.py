@@ -3,6 +3,7 @@ import datetime
 now = datetime.datetime.now()
 
 
+# NOTE  test
 class MyClass:
     """
     Some class
@@ -14,5 +15,7 @@ class MyClass:
         print(self.__class__.__name__, self.now)
         pass
 
+
+# NOTE End test
 
 MyClass()
