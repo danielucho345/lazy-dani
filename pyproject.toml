@@ -1,0 +1,10 @@
+
+[tool.ruff]
+# Set the line length
+line-length = 100
+
+# Enable specific rule categories or codes
+select = ["ALL"]
+
+# Ignore specific rules
+ignore = ["RET504", "TD002", "TD001", "TD003", "PD015", "S101", "DTZ005"]
