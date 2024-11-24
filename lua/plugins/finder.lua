@@ -1,7 +1,4 @@
 -- Define the function to find classes
-if true then
-  return {}
-end
 
 -- local function find_classes_in_current_file()
 --   require("telescope.builtin").current_buffer_fuzzy_find({
