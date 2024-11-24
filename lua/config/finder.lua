@@ -1,57 +1,3 @@
--- Define the function to find classes
-if true then
-  return {}
-end
-
--- local function find_classes_in_current_file()
---   require("telescope.builtin").current_buffer_fuzzy_find({
---     prompt_title = "Find Classes in Current File",
---     search = [[\bclass\s+\w+]],
---     use_regex = true,
---   })
--- end
---
--- -- Define the function to find properties
--- local function find_properties_in_current_file()
---   require("telescope.builtin").current_buffer_fuzzy_find({
---     prompt_title = "Find Properties in Current File",
---     search = [[\b\w+\s*=\s*[\w"']+]],
---     use_regex = true,
---   })
--- end
---
--- local function test()
---   -- Using `grep_string` on the current buffer to limit the search
---   require("telescope.builtin").grep_string({
---     prompt_title = "Find Properties in Current File",
---     search = [[\b\w+\s*=\s*[\w"']+]], -- Regex pattern for properties
---     use_regex = true,
---     only_sort_text = true, -- Show only the matched text without context in the preview
---     grep_open_files = true, -- Limit search to the current file
---   })
--- end
--- -- LazyVim plugin configuration
--- return {
---   {
---     "nvim-telescope/telescope.nvim",
---     keys = {
---       { "<leader>Fc", find_classes_in_current_file, desc = "Find Classes File" },
---       { "<leader>Fp", find_properties_in_current_file, desc = "Find Properties in Code" },
---       { "<leader>Ft", test, desc = "test" },
---     },
---     config = function()
---       require("telescope").setup({
---         defaults = {
---           -- Optional: Configure additional Telescope options here
---         },
---       })
---     end,
---   },
--- }
---
---
---
--- Function to get all global variables and functions
 function get_local_properties()
   local properties = {}
 
@@ -114,6 +60,3 @@ vim.api.nvim_set_keymap(
   ":lua telescope_lsp_find_variables()<CR>",
   { noremap = true, silent = true, desc = "[F]ind [v]ariables" }
 )
-if true then
-  return {}
-end

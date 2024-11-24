@@ -1,3 +1,7 @@
+-- if true then
+--   return {}
+-- end
+
 return {
   "navarasu/onedark.nvim",
   config = function()
