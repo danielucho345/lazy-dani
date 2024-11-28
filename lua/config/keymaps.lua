@@ -13,6 +13,19 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<leader>cP", utils.copy_full_path_to_clipboard, { desc = "Copy project-relative file path" })
 
+vim.keymap.set(
+  "n",
+  "<leader>cm",
+  utils.copy_python_module_path_to_clipboard,
+  { desc = "Copy project-relative file path" }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>cM",
+  utils.copy_python_module_path_to_clipboard,
+  { desc = "Copy python module command to clipboard" }
+)
 local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
