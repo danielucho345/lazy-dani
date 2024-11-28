@@ -1,25 +1,24 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- Add any additional keymaps
+--
+local utils = require("config.utils.search_file")
+print(vim.inspect(utils)) -- Should print a table with your functions
+
+vim.keymap.set(
+  "n",
+  "<leader>cp",
+  utils.copy_project_relative_path_to_clipboard,
+  { desc = "Copy project-relative file path" }
+)
+vim.keymap.set("n", "<leader>cP", utils.copy_full_path_to_clipboard, { desc = "Copy project-relative file path" })
+
 local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.keymap.set
-
---Remap space as leader key
--- keymap("", "<Space>", "<Nop>", opts)
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = " "
-
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
 
 -- Normal --
 -- Better window navigation
