@@ -1,9 +1,6 @@
--- if true then
---   return {}
--- end
-
 return {
   "navarasu/onedark.nvim",
+  enable = false,
   config = function()
     -- local colorscheme = "tokyonight"
     local colorscheme = "onedark"
