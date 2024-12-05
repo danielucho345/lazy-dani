@@ -1,6 +1,7 @@
 local M = {}
 
 function M.get_project_root()
+  -- Terminal Commands
   local clients = vim.lsp.get_active_clients({ bufnr = vim.api.nvim_get_current_buf() })
   for _, client in ipairs(clients) do
     if client.config.root_dir then

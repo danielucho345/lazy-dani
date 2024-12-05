@@ -1,5 +1,11 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+--
+-- Delete Default Keymaps
+-- local vim = vim or require('vim')
+
+vim.api.nvim_del_keymap("n", "<leader>fe")
+vim.api.nvim_del_keymap("n", "<leader>fE")
 -- Add any additional keymaps
 --
 local utils = require("config.utils.search_file")
@@ -26,9 +32,25 @@ vim.keymap.set(
   utils.copy_python_module_path_to_clipboard,
   { desc = "Copy python module command to clipboard" }
 )
-local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
+-- Neotree
+vim.keymap.set("n", "<leader>e", function()
+  vim.cmd("Neotree toggle")
+end)
+
+vim.keymap.set("n", "<leader>E", function()
+  local current_path = vim.fn.expand("%:p:h")
+  vim.cmd("Neotree toggle position=left " .. current_path)
+end, { desc = "Open Neotree", noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>fe", function()
+  require("config.utils.search_file").open_neotree_project_dir()
+end, { desc = "Open Neotree in Project Dir", noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>fE", function()
+  require("config.utils.search_file").open_neotree_in_subfolder()
+end, { desc = "Open Neotree in Subfolder", noremap = true, silent = true })
+local opts = { noremap = true, silent = true }
 
 -- Shorten function name
 local keymap = vim.keymap.set
