@@ -53,16 +53,16 @@ local function decorated_definitions_picker(opts)
       }),
       sorter = conf.generic_sorter(opts),
       previewer = previewers.new_buffer_previewer({
-        define_preview = function(self, entry, status)
-          local bufnr = vim.api.nvim_get_current_buf()
+        define_preview = function(self, entry)
           local start_row = entry.value.start_row - 1
           local end_row = entry.value.end_row
           local lines = vim.api.nvim_buf_get_lines(bufnr, start_row, end_row, false)
           vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, lines)
           vim.api.nvim_buf_set_option(self.state.bufnr, "filetype", "python")
+          vim.api.nvim_buf_set_option(self.state.bufnr, "bufhidden", "wipe")
         end,
       }),
-      attach_mappings = function(prompt_bufnr, map)
+      attach_mappings = function(prompt_bufnr)
         actions.select_default:replace(function()
           local selection = action_state.get_selected_entry()
           actions.close(prompt_bufnr)
