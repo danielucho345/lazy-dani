@@ -14,6 +14,22 @@ class MyClass:
         print(self.__class__.__name__, self.now)
         pass
 
+    @property
+    def now(self):
+        return self._now
+
+    @now.setter
+    def now(self, value):
+        self._now = value
+
+    @now.deleter
+    def now(self):
+        del self._now
+
+    @now.getter
+    def now(self):
+        return self._now
+
 
 MyClass()
 
