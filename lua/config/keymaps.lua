@@ -12,3 +12,10 @@ require("config.keymaps.neotree")
 
 -- Import Python Terminal
 require("config.keymaps.python_terminal")
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>Fd",
+  "<cmd>lua require('config.utils.finders').decorated_definitions_picker()<CR>",
+  { desc = "[F]ind [D]ecorators", noremap = true, silent = true }
+)

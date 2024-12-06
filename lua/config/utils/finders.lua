@@ -20,7 +20,7 @@ local function get_decorated_definitions(bufnr)
   )
 
   for _, node in query:iter_captures(root, bufnr, 0, -1) do
-    local start_row, _, end_row, _ = ts_utils.get_node_range(node)
+    local start_row, _, end_row, _ = vim.treesitter.get_node_range(node)
     table.insert(decorated_definitions, {
       start_row = start_row + 1,
       end_row = end_row + 1,

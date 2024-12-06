@@ -59,7 +59,7 @@ function M.copy_python_module_path_to_clipboard()
   end
 
   local module_path = relative_path:gsub("/", ".")
-  local command = "python3 -m " .. module_path
+  local command = "python -m " .. module_path
   vim.fn.setreg("+", command) -- Copy the command to the clipboard
   vim.notify("Copied command to clipboard: " .. command, vim.log.levels.INFO)
 end
