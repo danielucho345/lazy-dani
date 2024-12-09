@@ -7,7 +7,6 @@ return {
       -- Lua
       lua_ls = {
         settings = {
-
           Lua = {
             diagnostics = {
               globals = { "vim" },
@@ -32,11 +31,19 @@ return {
           embeddedLanguages = {
             css = true,
             javascript = true,
+            html = true,
+            htmldjango = true,
           },
           provideFormatter = true,
         },
       },
-
+      -- HTML
+      html = {
+        filetypes = { "html" },
+        init_options = {
+          provideFormatter = true,
+        },
+      },
       -- pyright will be automatically installed with mason and loaded with lspconfig
       pyright = {
         handlers = {
@@ -68,6 +75,28 @@ return {
               "--ignore=RET504,TD002,TD001,TD003,PD015,S101,DTZ005",
               "--line-length=100",
             },
+          },
+        },
+      },
+      -- Custom server configuration
+      custom_server = {
+        executeCommandProvider = {
+          commands = { "github.copilot.didAcceptCompletionItem", "github.copilot.didAcceptPanelCompletionItem" },
+        },
+        inlineCompletionProvider = vim.empty_dict(),
+        notebookDocumentSync = {
+          notebookSelector = { {
+            notebook = "*",
+          } },
+        },
+        textDocumentSync = {
+          change = 2,
+          openClose = true,
+        },
+        workspace = {
+          workspaceFolders = {
+            changeNotifications = true,
+            supported = true,
           },
         },
       },
