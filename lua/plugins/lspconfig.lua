@@ -78,28 +78,6 @@ return {
           },
         },
       },
-      -- Custom server configuration
-      custom_server = {
-        executeCommandProvider = {
-          commands = { "github.copilot.didAcceptCompletionItem", "github.copilot.didAcceptPanelCompletionItem" },
-        },
-        inlineCompletionProvider = vim.empty_dict(),
-        notebookDocumentSync = {
-          notebookSelector = { {
-            notebook = "*",
-          } },
-        },
-        textDocumentSync = {
-          change = 2,
-          openClose = true,
-        },
-        workspace = {
-          workspaceFolders = {
-            changeNotifications = true,
-            supported = true,
-          },
-        },
-      },
     },
   },
 }
