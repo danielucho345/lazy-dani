@@ -9,3 +9,15 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.cmd("colorscheme tokyonight-storm")
   end,
 })
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "●", -- Change the diagnostic symbol
+  },
+  signs = true,
+  underline = true,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+  },
+})

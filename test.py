@@ -33,4 +33,10 @@ class MyClass:
 
 MyClass()
 
+
+def sumfun(a: int, b: int) -> int:
+    return a + b
+
+
+sumfun(1, "2")
 # TODO: asdfasd
