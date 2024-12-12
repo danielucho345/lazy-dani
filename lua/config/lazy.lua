@@ -20,7 +20,6 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import/override with your plugins
     { import = "plugins" },
-    { import = "lazyvim.plugins.extras.lsp.none-ls" },
     {
       "L3MON4D3/LuaSnip",
       config = function()
