@@ -4,7 +4,7 @@ return {
   opts = {
     ---@type lspconfig.options
     servers = {
-      -- Lua
+      ----------------------------------------Lua----------------------------------------
       lua_ls = {
         settings = {
           Lua = {
@@ -20,31 +20,7 @@ return {
           },
         },
       },
-      -- HTML emmet
-      emmet_language_server = {
-        filetypes = {
-          "html",
-          "htmldjango",
-        },
-        init_options = {
-          configurationSection = { "html", "css", "javascript", "htmldjango" },
-          embeddedLanguages = {
-            css = true,
-            javascript = true,
-            html = true,
-            htmldjango = true,
-          },
-          provideFormatter = true,
-        },
-      },
-      -- HTML
-      html = {
-        filetypes = { "html" },
-        init_options = {
-          provideFormatter = true,
-        },
-      },
-      -- pyright will be automatically installed with mason and loaded with lspconfig
+      ----------------------------------------Python----------------------------------------
       pyright = {
         settings = {
           pyright = {
@@ -60,18 +36,46 @@ return {
           },
         },
       },
-      -- Ruff
       ruff = {
         init_options = {
           single_file_support = false,
           root_dir = vim.fn.getcwd(),
           settings = {
-            -- Any extra CLI arguments for `ruff` go here.
             args = {
               "--select=ALL",
               "--ignore=RET504,TD002,TD001,TD003,PD015,S101,DTZ005",
               "--line-length=100",
             },
+          },
+        },
+      },
+      ----------------------------------------HTML----------------------------------------
+      html = {
+        single_file_support = false,
+        filetypes = { "html", "htmldjango" },
+        settings = {
+          html = {
+            format = {
+              wrapLineLength = 120,
+              unformatted = "pre,code,textarea",
+              contentUnformatted = "pre,code,textarea",
+              indentInnerHtml = true,
+              preserveNewLines = true,
+              maxPreserveNewLines = 2,
+              indentHandlebars = false,
+              endWithNewline = true,
+              extraLiners = "head, body, /html",
+              wrapAttributes = "force-aligned",
+            },
+          },
+        },
+      },
+      ----------------------------------------DjLint----------------------------------------
+      djlint = {
+        settings = {
+          args = {
+            "--ignore=E001,E002",
+            "--extension=html,htm,htmldjango",
           },
         },
       },
