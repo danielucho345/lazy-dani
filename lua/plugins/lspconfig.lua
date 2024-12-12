@@ -46,9 +46,6 @@ return {
       },
       -- pyright will be automatically installed with mason and loaded with lspconfig
       pyright = {
-        handlers = {
-          ["textDocument/publishDiagnostics"] = function() end,
-        },
         settings = {
           pyright = {
             disableOrganizeImports = true,
