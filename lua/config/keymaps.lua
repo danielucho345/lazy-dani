@@ -53,7 +53,7 @@ wk.register({
       icon = "🔍",
     },
     ["v"] = {
-      "<cmd>lua require('config.utils.finders').decorated_variables_picker()<CR>",
+      "<cmd>lua require('config.utils.finders').variables_picker()<CR>",
       "[F]ind [v]ariables",
       icon = "🔍",
     },
