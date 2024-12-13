@@ -71,32 +71,9 @@ return {
         },
       },
       ----------------------------------------DjLint----------------------------------------
-      djlint = {
-        settings = {
-          args = {
-            "--ignore=E001,E002",
-            "--extension=html,htm,htmldjango",
-          },
-        },
-      },
+      djlint = nil,
       ----------------------------------------HTMLHint----------------------------------------
-      htmlhint = {
-        settings = {
-          args = {
-            "--config",
-            ".htmlhintrc",
-          },
-        },
-      },
-      ----------------------------------------Markuplint----------------------------------------
-      markuplint = {
-        settings = {
-          args = {
-            "--config",
-            ".markuplintrc",
-          },
-        },
-      },
+      htmlhint = nil,
     },
   },
 }
