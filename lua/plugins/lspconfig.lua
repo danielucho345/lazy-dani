@@ -57,8 +57,8 @@ return {
           html = {
             format = {
               wrapLineLength = 120,
-              unformatted = "pre,code,textarea",
-              contentUnformatted = "pre,code,textarea",
+              unformatted = "pre,code,textarea,url",
+              contentUnformatted = "pre,code,textarea,url",
               indentInnerHtml = true,
               preserveNewLines = true,
               maxPreserveNewLines = 2,
@@ -71,14 +71,9 @@ return {
         },
       },
       ----------------------------------------DjLint----------------------------------------
-      djlint = {
-        settings = {
-          args = {
-            "--ignore=E001,E002",
-            "--extension=html,htm,htmldjango",
-          },
-        },
-      },
+      djlint = nil,
+      ----------------------------------------HTMLHint----------------------------------------
+      htmlhint = nil,
     },
   },
 }
