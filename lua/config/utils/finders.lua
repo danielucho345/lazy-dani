@@ -20,27 +20,31 @@ local function get_decorated_definitions(bufnr)
   )
 
   -- Iterate over captured nodes
+  local decorators = {}
   for id, node in query:iter_captures(root, bufnr, 0, -1) do
     if query.captures[id] == "decorator" then
       local decorator_node = node
       local decorator_text = vim.treesitter.get_node_text(decorator_node, bufnr)
 
       -- Exclude the @property decorator explicitly
-      if decorator_text == "@property" then
-        goto continue
+      if decorator_text ~= "@property" then
+        -- Add all other decorators
+        table.insert(decorators, decorator_node)
       end
     end
+  end
 
-    if query.captures[id] == "decorated" then
-      local start_row, _, end_row, _ = vim.treesitter.get_node_range(node)
-      table.insert(decorated_definitions, {
-        start_row = start_row + 1,
-        end_row = end_row + 1,
-        text = vim.api.nvim_buf_get_lines(bufnr, start_row, end_row + 1, false)[1],
-      })
-    end
+  -- After filtering out @property, find the decorated definitions that are associated with other decorators
+  for _, decorator_node in ipairs(decorators) do
+    local start_row, _, end_row, _ = vim.treesitter.get_node_range(decorator_node)
+    local decorated_node = decorator_node:parent()
+    local start_row_decorated, _, end_row_decorated, _ = vim.treesitter.get_node_range(decorated_node)
 
-    ::continue::
+    table.insert(decorated_definitions, {
+      start_row = start_row_decorated + 1,
+      end_row = end_row_decorated + 1,
+      text = vim.api.nvim_buf_get_lines(bufnr, start_row_decorated, end_row_decorated + 1, false)[1],
+    })
   end
 
   return decorated_definitions
@@ -81,6 +85,8 @@ local function decorated_definitions_picker(opts)
         actions.select_default:replace(function()
           local selection = action_state.get_selected_entry()
           actions.close(prompt_bufnr)
+
+          -- Ensure cursor is moved to the correct line and column
           vim.api.nvim_win_set_cursor(0, { selection.value.start_row, 0 })
         end)
         return true

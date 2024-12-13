@@ -24,7 +24,7 @@ local wk = require("which-key")
 
 wk.register({
   ["e"] = {
-    "<cmd>require('config.keymaps.neotree').neotree_toggle()<CR>",
+    "<cmd>lua require('config.keymaps.neotree').neotree_toggle()<CR>",
     "Toggle neotree",
     icon = "⏺️",
   },
