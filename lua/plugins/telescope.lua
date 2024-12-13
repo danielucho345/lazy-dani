@@ -23,16 +23,16 @@ return {
           "static/vendor",
         },
 
-        -- ripgrep_arguments = {
-        --   'rg',
-        --   '--hidden',
-        --   '--no-heading',
-        --   '--with-filename',
-        --   '--line-number',
-        --   '--column',
-        --   '--smart-case'
-        -- },
-        --
+        ripgrep_arguments = {
+          "rg",
+          "--hidden",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+        },
+
         mappings = {
           i = {
             ["<C-n>"] = actions.cycle_history_next,
