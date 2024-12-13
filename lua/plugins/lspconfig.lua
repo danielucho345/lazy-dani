@@ -52,13 +52,13 @@ return {
       ----------------------------------------HTML----------------------------------------
       html = {
         single_file_support = false,
-        filetypes = { "html", "htmldjango" },
+        filetypes = { "html" },
         settings = {
           html = {
             format = {
               wrapLineLength = 120,
-              unformatted = "pre,code,textarea",
-              contentUnformatted = "pre,code,textarea",
+              unformatted = "pre,code,textarea,url",
+              contentUnformatted = "pre,code,textarea,url",
               indentInnerHtml = true,
               preserveNewLines = true,
               maxPreserveNewLines = 2,
