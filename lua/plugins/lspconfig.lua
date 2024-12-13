@@ -52,7 +52,7 @@ return {
       ----------------------------------------HTML----------------------------------------
       html = {
         single_file_support = false,
-        filetypes = { "html" },
+        filetypes = { "html", "htmldjango" },
         settings = {
           html = {
             format = {

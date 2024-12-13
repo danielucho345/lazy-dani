@@ -6,25 +6,17 @@ return {
     events = { "BufWritePost", "BufReadPost", "InsertLeave" },
     linters_by_ft = {
       fish = { "fish" },
-      html = { "djlint", "htmlhint", "markuplint" }, -- Add htmlhint and markuplint for HTML files
-      htmldjango = { "djlint", "htmlhint", "markuplint" }, -- Add djlint for htmldjango files
-      -- Use the "*" filetype to run linters on all filetypes.
-      -- ['*'] = { 'global linter' },
-      -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
-      -- ['_'] = { 'fallback linter' },
-      -- ["*"] = { "typos" },
+      html = { "djlint", "htmlhint", "markuplint" },
+      htmldjango = { "djlint", "htmlhint", "markuplint" },
     },
     -- LazyVim extension to easily override linter options
-    -- or add custom linters.
-    ---@type table<string,table>
     linters = {
-      -- -- Example of using selene only when a selene.toml file is present
-      -- selene = {
-      --   -- `condition` is another LazyVim extension that allows you to
-      --   -- dynamically enable/disable linters based on the context.
-      --   condition = function(ctx)
-      --     return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1]
-      --   end,
+      -- htmlhint = {
+      --   -- Pass custom arguments to htmlhint here
+      --   args = {
+      --     "--config",
+      --     '{ "doctype-first": false }', -- Disable the doctype-first rule
+      --   },
       -- },
     },
   },
@@ -57,10 +49,7 @@ return {
     end
 
     function M.lint()
-      -- Use nvim-lint's logic first:
-      -- * checks if linters exist for the full filetype first
-      -- * otherwise will split filetype by "." and add all those linters
-      -- * this differs from conform.nvim which only uses the first filetype that has a formatter
+      -- Use nvim-lint's logic to resolve linters based on filetype
       local names = lint._resolve_linter_by_ft(vim.bo.filetype)
 
       -- Create a copy of the names table to avoid modifying the original.

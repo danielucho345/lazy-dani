@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 vim.diagnostic.config({
   virtual_text = {
-    prefix = "●", -- Change the diagnostic symbol
+    jsdfasdfprefix = "●", -- Change the diagnostic symbol
   },
   signs = true,
   underline = true,
