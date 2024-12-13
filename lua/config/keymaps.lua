@@ -13,21 +13,19 @@ require("config.keymaps.neotree")
 require("config.keymaps.python_terminal")
 -- Delete the keymap for opening the terminal
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>Fd",
-  "<cmd>lua require('config.utils.finders').decorated_definitions_picker()<CR>",
-  { desc = "[F]ind [D]ecorators", noremap = true, silent = true }
-)
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<leader>Fd",
+--   "<cmd>lua require('config.utils.finders').decorated_definitions_picker()<CR>",
+--   { desc = "[F]ind [D]ecorators", noremap = true, silent = true }
+-- )
 
 local wk = require("which-key")
 
 wk.register({
   ["e"] = {
-    function()
-      require("config.keymaps.neotree").neotree_toggle()
-    end,
-    " Toggle Neotree",
+    "<cmd>require('config.keymaps.neotree').neotree_toggle()<CR>",
+    "Toggle neotree",
     icon = "⏺️",
   },
   ["f"] = {
@@ -41,5 +39,23 @@ wk.register({
       icon = "📂",
     },
     ["b"] = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Find Buffers", icon = "📑" },
+  },
+  ["F"] = {
+    name = "Find (in code)",
+    ["d"] = {
+      "<cmd>lua require('config.utils.finders').decorated_definitions_picker()<CR>",
+      "[F]ind [d]ecorators",
+      icon = "✨",
+    },
+    ["p"] = {
+      "<cmd>lua require('config.utils.finders').decorated_properties_picker()<CR>",
+      "[F]ind [p]roperties",
+      icon = "🔍",
+    },
+    ["v"] = {
+      "<cmd>lua require('config.utils.finders').decorated_variables_picker()<CR>",
+      "[F]ind [v]ariables",
+      icon = "🔍",
+    },
   },
 }, { prefix = "<leader>" })

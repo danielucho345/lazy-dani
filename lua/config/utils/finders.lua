@@ -1,4 +1,3 @@
-local ts_utils = require("nvim-treesitter.ts_utils")
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
@@ -15,17 +14,33 @@ local function get_decorated_definitions(bufnr)
   local query = vim.treesitter.query.parse(
     "python",
     [[
-    (decorated_definition) @decorated
-  ]]
+      (decorated_definition) @decorated
+      (decorator) @decorator
+    ]]
   )
 
-  for _, node in query:iter_captures(root, bufnr, 0, -1) do
-    local start_row, _, end_row, _ = vim.treesitter.get_node_range(node)
-    table.insert(decorated_definitions, {
-      start_row = start_row + 1,
-      end_row = end_row + 1,
-      text = vim.api.nvim_buf_get_lines(bufnr, start_row, end_row + 1, false)[1],
-    })
+  -- Iterate over captured nodes
+  for id, node in query:iter_captures(root, bufnr, 0, -1) do
+    if query.captures[id] == "decorator" then
+      local decorator_node = node
+      local decorator_text = vim.treesitter.get_node_text(decorator_node, bufnr)
+
+      -- Exclude the @property decorator explicitly
+      if decorator_text == "@property" then
+        goto continue
+      end
+    end
+
+    if query.captures[id] == "decorated" then
+      local start_row, _, end_row, _ = vim.treesitter.get_node_range(node)
+      table.insert(decorated_definitions, {
+        start_row = start_row + 1,
+        end_row = end_row + 1,
+        text = vim.api.nvim_buf_get_lines(bufnr, start_row, end_row + 1, false)[1],
+      })
+    end
+
+    ::continue::
   end
 
   return decorated_definitions
@@ -73,13 +88,6 @@ local function decorated_definitions_picker(opts)
     })
     :find()
 end
-
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>Fd",
-  "<cmd>lua require('config.utils.finders').decorated_definitions_picker()<CR>",
-  { desc = "[F]ind [D]ecorators", noremap = true, silent = true }
-)
 
 return {
   decorated_definitions_picker = decorated_definitions_picker,

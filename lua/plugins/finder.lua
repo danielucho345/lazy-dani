@@ -85,12 +85,12 @@ end
 -- display_properties()
 
 -- Add the display properties command to a keybinding
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>Ft",
-  ":lua display_properties()<CR>",
-  { noremap = true, silent = true, desc = "Find Property" }
-)
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<leader>Ft",
+--   ":lua display_properties()<CR>",
+--   { noremap = true, silent = true, desc = "Find Property" }
+-- )
 
 -- Custom Telescope function to filter only for properties (fields, variables)
 function telescope_lsp_find_variables()
@@ -105,12 +105,12 @@ function telescope_lsp_find_variables()
 end
 
 -- Bind custom Telescope function to a key
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>fv",
-  ":lua telescope_lsp_find_variables()<CR>",
-  { noremap = true, silent = true, desc = "[F]ind [v]ariables" }
-)
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<leader>fv",
+--   ":lua telescope_lsp_find_variables()<CR>",
+--   { noremap = true, silent = true, desc = "[F]ind [v]ariables" }
+-- )
 if true then
   return {}
 end
