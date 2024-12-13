@@ -2,6 +2,7 @@ return {
   "nvim-telescope/telescope.nvim",
   config = function()
     local actions = require("telescope.actions")
+    local action_layout = require("telescope.actions.layout")
     require("telescope").setup({
       defaults = {
 
@@ -35,8 +36,7 @@ return {
 
         mappings = {
           i = {
-            ["<C-n>"] = actions.cycle_history_next,
-            ["<C-p>"] = actions.cycle_history_prev,
+            ["<M-p>"] = action_layout.toggle_preview,
 
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
@@ -66,6 +66,7 @@ return {
           },
 
           n = {
+            ["<M-p>"] = action_layout.toggle_preview,
             ["<esc>"] = actions.close,
             ["<CR>"] = actions.select_default,
             ["<C-x>"] = actions.select_horizontal,
