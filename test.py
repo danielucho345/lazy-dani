@@ -6,6 +6,7 @@ now = datetime.datetime.now()
 class MyClass:
     """
     Some class
+
     """
 
     def __init__(self) -> None:

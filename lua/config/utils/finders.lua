@@ -73,6 +73,7 @@ local function decorated_definitions_picker(opts)
       sorter = conf.generic_sorter(opts),
       previewer = previewers.new_buffer_previewer({
         define_preview = function(self, entry)
+          -- Redraw the preview buffer with the selected entry's content
           local start_row = entry.value.start_row - 1
           local end_row = entry.value.end_row
           local lines = vim.api.nvim_buf_get_lines(bufnr, start_row, end_row, false)
@@ -86,8 +87,19 @@ local function decorated_definitions_picker(opts)
           local selection = action_state.get_selected_entry()
           actions.close(prompt_bufnr)
 
-          -- Ensure cursor is moved to the correct line and column
+          -- Move the cursor to the correct line and column in the main window
           vim.api.nvim_win_set_cursor(0, { selection.value.start_row, 0 })
+
+          -- Sync preview window with cursor position in the main window
+          local preview_win = self.state.win_id
+          local preview_cursor_line = selection.value.start_row - 1 -- zero-indexed line
+          if vim.api.nvim_win_is_valid(preview_win) then
+            vim.api.nvim_win_set_cursor(preview_win, { preview_cursor_line, 0 })
+            -- Scroll the preview window
+            local win_height = vim.api.nvim_win_get_height(preview_win)
+            local scroll_offset = math.max(0, preview_cursor_line - (win_height / 2))
+            vim.api.nvim_win_set_cursor(preview_win, { scroll_offset, 0 })
+          end
         end)
         return true
       end,
@@ -125,6 +137,7 @@ local function get_variables(bufnr, lang)
 
   return variables
 end
+
 local function variables_picker(opts)
   opts = opts or {}
   local bufnr = vim.api.nvim_get_current_buf()
@@ -149,6 +162,7 @@ local function variables_picker(opts)
       sorter = conf.generic_sorter(opts),
       previewer = previewers.new_buffer_previewer({
         define_preview = function(self, entry)
+          -- Redraw the preview buffer with the selected entry's content
           local start_row = entry.value.start_row - 1
           local end_row = entry.value.end_row
           local lines = vim.api.nvim_buf_get_lines(bufnr, start_row, end_row, false)
@@ -162,8 +176,19 @@ local function variables_picker(opts)
           local selection = action_state.get_selected_entry()
           actions.close(prompt_bufnr)
 
-          -- Ensure cursor is moved to the correct line and column
+          -- Move the cursor to the correct line and column in the main window
           vim.api.nvim_win_set_cursor(0, { selection.value.start_row, 0 })
+
+          -- Sync preview window with cursor position in the main window
+          local preview_win = self.state.win_id
+          local preview_cursor_line = selection.value.start_row - 1 -- zero-indexed line
+          if vim.api.nvim_win_is_valid(preview_win) then
+            vim.api.nvim_win_set_cursor(preview_win, { preview_cursor_line, 0 })
+            -- Scroll the preview window
+            local win_height = vim.api.nvim_win_get_height(preview_win)
+            local scroll_offset = math.max(0, preview_cursor_line - (win_height / 2))
+            vim.api.nvim_win_set_cursor(preview_win, { scroll_offset, 0 })
+          end
         end)
         return true
       end,
