@@ -30,7 +30,7 @@ wk.register({
   },
   ["f"] = {
     name = "[f]ind",
-    ["f"] = { "<cmd>lua require('telescope.builtin').find_files()<CR>", "Find Files", icon = "🔍" },
+    ["f"] = { "<cmd>Telescope find_files<CR>", "Find Files", icon = "🔍" },
     ["F"] = {
       function()
         require("config.keymaps.telescope").find_files_current_folder()
