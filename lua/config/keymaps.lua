@@ -30,7 +30,7 @@ wk.register({
   },
   ["f"] = {
     name = "[f]ind",
-    ["f"] = { "<cmd>Telescope find_files<CR>", "Find Files", icon = "🔍" },
+    ["f"] = { "<cmd>lua require('config.keymaps.telescope').find_files_gitignore()<CR>", "Find Files", icon = "🔍" },
     ["F"] = {
       function()
         require("config.keymaps.telescope").find_files_current_folder()
@@ -39,6 +39,11 @@ wk.register({
       icon = "📂",
     },
     ["b"] = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Find Buffers", icon = "📑" },
+    ["s"] = {
+      "<cmd>lua require('config.keymaps.telescope').find_files_in_static() <CR>",
+      "Find in Static",
+      icon = "📁",
+    },
   },
   ["F"] = {
     name = "Find (in code)",
