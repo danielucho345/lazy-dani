@@ -65,4 +65,8 @@ wk.register({
       icon = "🔍",
     },
   },
+  ["c"] = {
+    name = "Code",
+    ["f"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Open Python Terminal", icon = "🐍" },
+  },
 }, { prefix = "<leader>" })
