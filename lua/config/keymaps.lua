@@ -1,25 +1,6 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 
--- Delete Default Keymaps
-require("config.keymaps.delete_keymaps")
---Import get_keymap function
-require("config.keymaps.general")
-
--- Import Neotree
-require("config.keymaps.neotree")
-
--- Import Python Terminal
-require("config.keymaps.python_terminal")
--- Delete the keymap for opening the terminal
-
--- vim.api.nvim_set_keymap(
---   "n",
---   "<leader>Fd",
---   "<cmd>lua require('config.utils.finders').decorated_definitions_picker()<CR>",
---   { desc = "[F]ind [D]ecorators", noremap = true, silent = true }
--- )
-
 local wk = require("which-key")
 
 wk.register({
@@ -38,8 +19,16 @@ wk.register({
       "Files Current Folder",
       icon = "📂",
     },
-    ["e"] = { "<cmd> lua require('config.keymaps.neotree').neotree_current_project_root()<CR>", "Find in current project", icon = "🕒" },
-    ["E"] = { "<cmd> lua require('config.keymaps.neotree').neotree_current_file()<CR>", "Find in current floder", icon = "📁" },
+    ["e"] = {
+      "<cmd> lua require('config.keymaps.neotree').neotree_current_project_root()<CR>",
+      "Find in current project",
+      icon = "🕒",
+    },
+    ["E"] = {
+      "<cmd> lua require('config.keymaps.neotree').neotree_current_file()<CR>",
+      "Find in current floder",
+      icon = "📁",
+    },
     ["b"] = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Find Buffers", icon = "📑" },
     ["s"] = {
       "<cmd>lua require('config.keymaps.telescope').find_files_in_static() <CR>",
@@ -70,3 +59,24 @@ wk.register({
     ["f"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Open Python Terminal", icon = "🐍" },
   },
 }, { prefix = "<leader>" })
+
+vim.keymap.del("n", "<leader>cm")
+
+-- Delete Default Keymaps
+require("config.keymaps.delete_keymaps")
+--Import get_keymap function
+require("config.keymaps.general")
+
+-- Import Neotree
+require("config.keymaps.neotree")
+
+-- Import Python Terminal
+require("config.keymaps.python_terminal")
+-- Delete the keymap for opening the terminal
+
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<leader>Fd",
+--   "<cmd>lua require('config.utils.finders').decorated_definitions_picker()<CR>",
+--   { desc = "[F]ind [D]ecorators", noremap = true, silent = true }
+-- )

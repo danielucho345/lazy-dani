@@ -20,7 +20,7 @@ end
 function M.copy_project_relative_path_to_clipboard()
   local file_path = vim.fn.expand("%")
   if file_path == "" or file_path == nil then
-    vim.notify("No file open or unnamed buffer", vim.log.levels.WARN)
+    -- vim.notify("No file open or unnamed buffer", vim.log.levels.WARN)
     return
   end
 
@@ -34,7 +34,7 @@ end
 function M.copy_full_path_to_clipboard()
   local file_path = vim.fn.expand("%:p") -- Expand to absolute path
   if file_path == "" or file_path == nil then
-    vim.notify("No file open or unnamed buffer", vim.log.levels.WARN)
+    -- vim.notify("No file open or unnamed buffer", vim.log.levels.WARN)
     return
   end
 
@@ -45,7 +45,7 @@ end
 function M.copy_python_module_path_to_clipboard()
   local file_path = vim.fn.expand("%:p:r") -- Expand to absolute path without extension
   if file_path == "" or file_path == nil then
-    vim.notify("No file open or unnamed buffer", vim.log.levels.WARN)
+    -- vim.notify("No file open or unnamed buffer", vim.log.levels.WARN)
     return
   end
 

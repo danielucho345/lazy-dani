@@ -38,7 +38,7 @@ return {
       ---@param opts bufferline.IconFetcherOpts
       get_element_icon = function(opts)
         local icon = LazyVim.config.icons.ft[opts.filetype]
-        print("Icon for filetype " .. opts.filetype .. ": " .. (icon or "nil"))
+        -- print("Icon for filetype " .. opts.filetype .. ": " .. (icon or "nil"))
         return icon
       end,
     },
