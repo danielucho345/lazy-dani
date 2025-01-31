@@ -49,19 +49,13 @@ function M.copy_python_module_path_to_clipboard()
     return
   end
 
-  local root = M.get_project_root()
-  local relative_path = file_path:gsub("^" .. root:gsub("%%", "%%%%") .. "/", "")
-
-  -- Adjust the relative path to start from the 'app' directory
-  local start_index = relative_path:find("app/")
-  if start_index then
-    relative_path = relative_path:sub(start_index)
-  end
-
-  local module_path = relative_path:gsub("/", ".")
-  local command = "python -m " .. module_path
-  vim.fn.setreg("+", command) -- Copy the command to the clipboard
-  vim.notify("Copied command to clipboard: " .. command, vim.log.levels.INFO)
+  local root = vim.fn.expand("%")
+  local alt_root = string.gsub(root, "/", ".")
+  local command = "python -m " .. alt_root
+  local trim_path = string.sub(command, 1, #command - 3)
+  vim.fn.setreg("+", trim_path) -- Copy the command to the clipboard
+  vim.notify("Copied command to clipboard: " .. trim_path, vim.log.levels.INFO)
 end
 
+M.copy_python_module_path_to_clipboard()
 return M
