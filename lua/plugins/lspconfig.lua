@@ -74,6 +74,24 @@ return {
       djlint = nil,
       ----------------------------------------HTMLHint----------------------------------------
       htmlhint = nil,
+      ----------------------------------------Rust----------------------------------------
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = {
+              command = "clippy",
+            },
+            cargo = {
+              loadOutDirsFromCheck = true,
+            },
+            procMacro = {
+              enable = true,
+            },
+          },
+        },
+        filetypes = { "rust" },
+        single_file_support = false,
+      },
     },
   },
 }

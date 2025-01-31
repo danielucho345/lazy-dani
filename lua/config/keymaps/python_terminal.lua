@@ -14,10 +14,3 @@ vim.keymap.set(
   utils.copy_python_module_path_to_clipboard,
   { desc = "Copy project-relative file path" }
 )
-
-vim.keymap.set(
-  "n",
-  "<leader>cM",
-  utils.copy_python_module_path_to_clipboard,
-  { desc = "Copy python module command to clipboard" }
-)
