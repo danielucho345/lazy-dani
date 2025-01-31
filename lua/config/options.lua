@@ -3,6 +3,7 @@
 -- Add any additional options here
 --
 
+vim.opt.termguicolors = true
 -- set the colorscheme
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()

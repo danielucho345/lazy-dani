@@ -38,6 +38,8 @@ wk.register({
       "Files Current Folder",
       icon = "📂",
     },
+    ["e"] = { "<cmd> lua require('config.keymaps.neotree').neotree_current_project_root()<CR>", "Find in current project", icon = "🕒" },
+    ["E"] = { "<cmd> lua require('config.keymaps.neotree').neotree_current_file()<CR>", "Find in current floder", icon = "📁" },
     ["b"] = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Find Buffers", icon = "📑" },
     ["s"] = {
       "<cmd>lua require('config.keymaps.telescope').find_files_in_static() <CR>",
@@ -62,5 +64,9 @@ wk.register({
       "[F]ind [v]ariables",
       icon = "🔍",
     },
+  },
+  ["c"] = {
+    name = "Code",
+    ["f"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Open Python Terminal", icon = "🐍" },
   },
 }, { prefix = "<leader>" })
