@@ -32,7 +32,7 @@ class MyClass:
         return self._now
 
 
-MyClass()
+MyClass().now
 
 
 def sumfun(a: int, b: int) -> int:
